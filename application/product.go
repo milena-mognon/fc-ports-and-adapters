@@ -1,5 +1,7 @@
 package application
 
+import "errors"
+
 // especificação de como vai ser o produto (interface)
 type ProductInterface interface {
 	IsValid() (bool, error)
@@ -23,30 +25,34 @@ type Product struct { // struct não precisa informar que está implementando um
 	Status string
 }
 
-func (p *Product) IsValid() (bool, error) { // método
+// func (p *Product) IsValid() (bool, error) { // método
 
-}
+// }
 
 func (p *Product) Enable() error {
-
+	if p.Price > 0 {
+		p.Status = ENABLED
+		return nil // quando ativa returna nil, significa que não teve erro
+	}
+	return errors.New("the price must be greater than zero to enable the product")
 }
 
-func (p *Product) Disable() error {
+// func (p *Product) Disable() error {
 
-}
+// }
 
 func (p *Product) GetId() string {
-
+	return p.ID
 }
 
 func (p *Product) GetName() string {
-
+	return p.Name
 }
 
 func (p *Product) GetStatus() string {
-
+	return p.Status
 }
 
 func (p *Product) GetPrice() float64 {
-
+	return p.Price
 }
