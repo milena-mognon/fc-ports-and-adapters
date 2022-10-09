@@ -1,6 +1,14 @@
 package application
 
-import "errors"
+import (
+	"errors"
+
+	"github.com/asaskevich/govalidator"
+)
+
+func init() {
+	govalidator.SetFieldsRequiredByDefault(true) // todos os campos são obrigatórios por default
+}
 
 // especificação de como vai ser o produto (interface)
 type ProductInterface interface {
@@ -19,15 +27,33 @@ const (
 )
 
 type Product struct { // struct não precisa informar que está implementando uma inteface, o go faz isso de forma implicita
-	ID     string
-	Name   string
-	Price  float64
-	Status string
+	ID     string  `valid:"uuidv4"` // tags
+	Name   string  `valid:"required"`
+	Price  float64 `valid:"float,optional"`
+	Status string  `valid:"required"`
 }
 
-// func (p *Product) IsValid() (bool, error) { // método
+func (p *Product) IsValid() (bool, error) { // método
+	if p.Status == "" {
+		p.Status = DISABLED
+	}
 
-// }
+	if p.Status != ENABLED && p.Status != DISABLED {
+		return false, errors.New("the status must be enabled or disabled")
+	}
+
+	if p.Price < 0 {
+		return false, errors.New("the price must be greater or equal zero")
+	}
+
+	_, err := govalidator.ValidateStruct(p)
+
+	if err != nil {
+		return false, err
+	}
+
+	return true, nil
+}
 
 func (p *Product) Enable() error {
 	if p.Price > 0 {
