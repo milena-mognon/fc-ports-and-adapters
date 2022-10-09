@@ -3,6 +3,8 @@ package application
 import (
 	"errors"
 
+	uuid "github.com/satori/go.uuid"
+
 	"github.com/asaskevich/govalidator"
 )
 
@@ -21,6 +23,26 @@ type ProductInterface interface {
 	GetPrice() float64
 }
 
+type ProductServiceInterface interface {
+	Get(id string) (ProductInterface, error)
+	Create(name string, price float64) (ProductInterface, error)
+	Enable(product ProductInterface) (ProductInterface, error)
+	Disable(product ProductInterface) (ProductInterface, error)
+}
+
+type ProductReader interface {
+	Get(id string) (ProductInterface, error)
+}
+
+type ProductWriter interface {
+	Save(product ProductInterface) (ProductInterface, error)
+}
+
+type ProductPersistenceInterface interface { // composição
+	ProductReader
+	ProductWriter
+}
+
 const (
 	DISABLED = "disabled"
 	ENABLED  = "enabled"
@@ -31,6 +53,14 @@ type Product struct { // struct não precisa informar que está implementando um
 	Name   string  `valid:"required"`
 	Price  float64 `valid:"float,optional"`
 	Status string  `valid:"required"`
+}
+
+func NewProduct() *Product { // * ponteiro -> informa onde o valor está quardado e não o valor em si
+	product := Product{
+		ID:     uuid.NewV4().String(),
+		Status: DISABLED,
+	}
+	return &product // & pega a localização e não o valor
 }
 
 func (p *Product) IsValid() (bool, error) { // método
