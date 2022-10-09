@@ -101,7 +101,7 @@ func (p *Product) Disable() error {
 	return errors.New("the price must be zero in order to disable the product")
 }
 
-func (p *Product) GetId() string {
+func (p *Product) GetID() string {
 	return p.ID
 }
 
