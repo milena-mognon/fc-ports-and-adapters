@@ -51,3 +51,11 @@ comandos cli criados
 `go run main.go cli -a=create -n=ProductCli -p=25.0`
 `go run main.go cli -a=enable -i=8c9dd0f2-c031-453c-a257-7931a897f5cf`
 `go run main.go cli -a=disable -i=8c9dd0f2-c031-453c-a257-7931a897f5cf`
+
+web server
+`cobra-cli add http` cria o comando cli para rodar o servidor web
+`go run main.go http` roda o servidor web
+
+para testar o servidor web no Insomnia
+
+`GET http://localhost:9000/products/8c9dd0f2-c031-453c-a257-7931a897f5cf`
