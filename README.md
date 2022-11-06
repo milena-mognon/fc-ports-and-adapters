@@ -15,3 +15,7 @@ dentro do container
 `create table products(id string, name string, price float, status string)` cria a tabela produtos
 
 `.tables` ve as tabelas existentes
+
+rodar testes (só funciona dentro do container, no Windows da um erro)
+
+`go test ./...`
