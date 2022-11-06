@@ -19,3 +19,7 @@ dentro do container
 rodar testes (só funciona dentro do container, no Windows da um erro)
 
 `go test ./...`
+
+executa o main.go
+
+`go run main.go`

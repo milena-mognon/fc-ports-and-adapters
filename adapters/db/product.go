@@ -61,7 +61,7 @@ func (p *ProductDB) create(product application.ProductInterface) (application.Pr
 
 	_, err = stmt.Exec(
 		product.GetID(),
-		product.GetID(),
+		product.GetName(),
 		product.GetPrice(),
 		product.GetStatus(),
 	)
