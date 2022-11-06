@@ -23,3 +23,13 @@ rodar testes (só funciona dentro do container, no Windows da um erro)
 executa o main.go
 
 `go run main.go`
+
+Anotações
+
+Db Adapter
+
+- Lado direto da arquitetura hexagonal
+
+CLI Adapter
+
+- Lado Esquerdo da arquitetura hexagonal
