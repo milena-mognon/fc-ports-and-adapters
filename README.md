@@ -33,3 +33,13 @@ Db Adapter
 CLI Adapter
 
 - Lado Esquerdo da arquitetura hexagonal
+
+comandos cobra - cli
+
+`cobra-cli init` cria o main
+
+`cobra-cli add cli` adiciona novo comando
+
+`go run main.go cli` executa o novo comando
+
+`go mod tidy` mata qualquer pacote não não esteja sendo utilizado e instala os que precisa
