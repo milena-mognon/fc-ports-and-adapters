@@ -43,3 +43,11 @@ comandos cobra - cli
 `go run main.go cli` executa o novo comando
 
 `go mod tidy` mata qualquer pacote não não esteja sendo utilizado e instala os que precisa
+
+comandos cli criados
+
+`go run main.go cli --help` virificar flags disponívis
+`go run main.go cli -a=get -i=8c9dd0f2-c031-453c-a257-7931a897f5cf`
+`go run main.go cli -a=create -n=ProductCli -p=25.0`
+`go run main.go cli -a=enable -i=8c9dd0f2-c031-453c-a257-7931a897f5cf`
+`go run main.go cli -a=disable -i=8c9dd0f2-c031-453c-a257-7931a897f5cf`
